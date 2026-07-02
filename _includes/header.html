@@ -1,0 +1,22 @@
+<a class="skip-link" href="#main-content">К основному контенту</a>
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-logo" href="{{ '/' | relative_url }}" aria-label="{{ site.title | escape }}">
+      <img src="{{ site.brand.logo | relative_url }}" alt="АМ">
+    </a>
+
+    <nav class="site-nav" aria-label="Основная навигация">
+      {% for item in site.nav %}
+        <a href="{{ item.url }}">{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+
+    <div class="site-header__contact" aria-label="Контакты">
+      <a href="{{ site.contact.phone_main_href }}">{{ site.contact.phone_main }}</a>
+      <a href="{{ site.contact.phone_extra_href }}">{{ site.contact.phone_extra }}</a>
+      <a href="{{ site.contact.email_href }}">{{ site.contact.email }}</a>
+    </div>
+
+    {% include socials.html class_name="site-header__socials" %}
+  </div>
+</header>

@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<section class="blog-hero section-dark">
+  <div class="container blog-hero__inner">
+    <p class="eyebrow">Адвокат, кандидат юридических наук, магистр экономики</p>
+    <h1>{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="blog-hero__description">{{ page.description }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="blog-index section-dark" aria-label="Список публикаций">
+  <div class="container">
+    <div class="post-grid">
+      {% for post in site.posts %}
+        <article class="post-card">
+          <a class="post-card__image-link" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
+            {% assign post_image = post.image | default: site.default_og_image %}
+            <img src="{{ post_image | relative_url }}" alt="" loading="lazy">
+          </a>
+          <div class="post-card__body">
+            {% if post.category %}
+              <p class="post-card__category">{{ post.category }}</p>
+            {% endif %}
+            <time class="post-card__date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%d.%m.%Y" }}</time>
+            <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+            {% if post.description %}
+              <p>{{ post.description }}</p>
+            {% endif %}
+            <a class="read-link" href="{{ post.url | relative_url }}">Читать</a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

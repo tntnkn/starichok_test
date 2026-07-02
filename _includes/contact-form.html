@@ -1,0 +1,29 @@
+<section class="contact-section">
+  <div class="container contact-section__inner">
+    <div class="contact-section__copy">
+      <p class="eyebrow">Конфиденциально и по существу</p>
+      <h2>Получить персональную консультацию</h2>
+      <p>Опишите ситуацию, и я свяжусь с вами в течение рабочего дня.</p>
+      <a class="contact-section__phone" href="{{ site.contact.phone_main_href }}">{{ site.contact.phone_main }}</a>
+    </div>
+    <form class="contact-form" aria-label="Обратная связь">
+      <label>
+        <span>Ваше имя</span>
+        <input type="text" name="name" autocomplete="name">
+      </label>
+      <label>
+        <span>Телефон или мессенджер</span>
+        <input type="text" name="contact" autocomplete="tel">
+      </label>
+      <label>
+        <span>Кратко о ситуации</span>
+        <textarea name="message" rows="5"></textarea>
+      </label>
+      <label class="contact-form__consent">
+        <input type="checkbox" name="consent">
+        <span>Я согласен с политикой конфиденциальности и даю согласие на обработку персональных данных</span>
+      </label>
+      <button type="button">Отправить</button>
+    </form>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'ru' }}">
+  <head>
+    {% include seo-head.html %}
+  </head>
+  <body class="site-body layout-{{ page.layout | default: 'default' }}">
+    {% include header.html %}
+    <main id="main-content" class="site-main">
+      {{ content }}
+    </main>
+    {% include footer.html %}
+  </body>
+</html>

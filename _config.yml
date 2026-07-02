@@ -1,0 +1,73 @@
+title: "Адвокат Мильский | Блог"
+description: "Блог адвоката Андрея Мильского о судебных спорах, взыскании задолженности, банкротстве и защите бизнеса."
+lang: ru
+timezone: Europe/Moscow
+url: "https://blog.milsky-advokat.ru"
+baseurl: ""
+permalink: /:slug/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+
+exclude:
+  - resource/
+  - README.md
+  - vendor/
+  - .bundle/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      show_author: true
+      show_practice_block: true
+      show_contact_form: true
+
+brand:
+  logo: /assets/icons/logo.svg
+  favicon: /assets/favicon.ico
+  dark: "#231a17"
+  cream: "#fae9dd"
+  cream_alt: "#efd8c7"
+
+author:
+  name: "Мильский Андрей"
+  full_name: "Мильский Андрей Сергеевич"
+  title: "адвокат, кандидат юридических наук, магистр экономики"
+  award: "победитель премии «Адвокат года 2026» по версии RBG и Торгово-промышленной палаты России"
+  image: /assets/img/author1.png
+  portrait: /assets/img/author2.webp
+
+contact:
+  phone_main: "+7 985 914 43 46"
+  phone_main_href: "tel:+79859144346"
+  phone_extra: "+7 999 961 99 99"
+  phone_extra_href: "tel:+79999619999"
+  email: "asmilsky@yandex.ru"
+  email_href: "mailto:asmilsky@yandex.ru?subject=Андрей, здравствуйте!"
+  address: "Москва, ул. Академика Королева, д.13, стр.1, подъезд 5, офис 834"
+
+socials:
+  max: "https://max.ru/join/O0qHEqGTDojHAoC2Gzxxa8EVBO8EaroBM1ZZtV1DUc4"
+  telegram: "https://t.me/milskylaw"
+  whatsapp: "https://wa.me/79859144346?text=Добрый%20день!"
+
+nav:
+  - label: "Главная"
+    url: "https://milsky-advokat.ru/"
+  - label: "Услуги"
+    url: "https://milsky-advokat.ru/#services"
+  - label: "Судебная практика"
+    url: "https://milsky-advokat.ru/sudebnaya-praktika-cases"
+  - label: "Обо мне"
+    url: "https://milsky-advokat.ru/advokat-milsky"
+
+default_og_image: /assets/img/thumb1.webp

@@ -1,0 +1,39 @@
+---
+layout: default
+---
+
+<article class="post-page">
+  <header class="post-hero section-dark">
+    <div class="container post-hero__inner">
+      {% if page.eyebrow %}
+        <p class="eyebrow">{{ page.eyebrow }}</p>
+      {% endif %}
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}
+        <p class="post-hero__description">{{ page.description }}</p>
+      {% endif %}
+    </div>
+  </header>
+
+  {% include messenger-cta.html tone="dark" %}
+
+  {% if page.show_author %}
+    {% include author-block.html %}
+  {% endif %}
+
+  <div class="article-shell">
+    {% if page.show_practice_block %}
+      {% include practice-block.html %}
+    {% endif %}
+
+    <section class="article-section">
+      <div class="article-content">
+        {{ content }}
+      </div>
+    </section>
+
+    {% if page.show_contact_form %}
+      {% include contact-form.html %}
+    {% endif %}
+  </div>
+</article>
