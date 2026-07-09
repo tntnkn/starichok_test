@@ -1,0 +1,33 @@
+{% assign card_post = include.post %}
+{% assign card_category_url = "" %}
+{% if card_post.category %}
+  {% for card_category in site.data.categories %}
+    {% if card_category.title == card_post.category %}
+      {% capture card_category_url %}/categories/{{ card_category.slug }}/{% endcapture %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+<article class="post-card">
+  <a class="post-card__image-link" href="{{ card_post.url | relative_url }}" aria-label="{{ card_post.title | escape }}">
+    {% assign post_image = card_post.image | default: site.default_og_image %}
+    <img src="{{ post_image | relative_url }}" alt="" loading="lazy">
+  </a>
+  <div class="post-card__body">
+    {% if card_post.category %}
+      <p class="post-card__category">
+        {% if card_category_url != "" %}
+          <a href="{{ card_category_url | relative_url }}">{{ card_post.category }}</a>
+        {% else %}
+          {{ card_post.category }}
+        {% endif %}
+      </p>
+    {% endif %}
+    <time class="post-card__date" datetime="{{ card_post.date | date_to_xmlschema }}">{{ card_post.date | date: "%d.%m.%Y" }}</time>
+    <h2><a href="{{ card_post.url | relative_url }}">{{ card_post.title }}</a></h2>
+    {% if card_post.description %}
+      <p>{{ card_post.description }}</p>
+    {% endif %}
+    <a class="read-link" href="{{ card_post.url | relative_url }}">Читать</a>
+  </div>
+</article>

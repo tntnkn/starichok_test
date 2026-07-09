@@ -185,6 +185,87 @@ a:hover {
   padding: 36px 0 104px;
 }
 
+.category-list {
+  margin: 0 0 44px;
+}
+
+.category-list__title {
+  margin: 0 0 16px;
+  color: rgba(250, 233, 221, 0.7);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.category-list__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.category-chip {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 13px;
+  color: var(--color-cream);
+  background: rgba(250, 233, 221, 0.06);
+  border: 1px solid rgba(250, 233, 221, 0.2);
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.25;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.category-chip:hover,
+.category-chip--active {
+  color: var(--color-dark);
+  background: var(--color-cream-2);
+  border-color: var(--color-cream-2);
+}
+
+.category-chip__count {
+  display: inline-flex;
+  min-width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 7px;
+  color: inherit;
+  background: rgba(35, 26, 23, 0.14);
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 1;
+}
+
+.category-index {
+  padding-top: 28px;
+}
+
+.category-toolbar {
+  margin: -12px 0 36px;
+}
+
+.category-toolbar__all {
+  margin-top: 0;
+}
+
+.category-empty {
+  max-width: 620px;
+  margin: 0;
+  color: rgba(250, 233, 221, 0.74);
+}
+
 .post-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -225,6 +306,15 @@ a:hover {
   font-family: var(--font-serif);
   font-size: 20px;
   letter-spacing: 0.08em;
+}
+
+.post-card__category a {
+  border-bottom: 1px solid rgba(250, 233, 221, 0.28);
+}
+
+.post-card__category a:hover {
+  color: var(--color-cream-2);
+  border-bottom-color: rgba(250, 233, 221, 0.7);
 }
 
 .post-card h2 {
@@ -667,6 +757,15 @@ a:hover {
   transform: translateY(-50%);
 }
 
+.layout-post .post-meta a {
+  border-bottom: 1px solid rgba(250, 233, 221, 0.28);
+}
+
+.layout-post .post-meta a:hover {
+  color: var(--color-cream-2);
+  border-bottom-color: rgba(250, 233, 221, 0.7);
+}
+
 .layout-post .messenger-cta {
   padding: 14px 0 16px;
   border-top: 1px solid rgba(35, 26, 23, 0.1);
@@ -1064,6 +1163,10 @@ a:hover {
 
   .post-grid {
     gap: 46px;
+  }
+
+  .category-toolbar {
+    margin-top: -8px;
   }
 
   .site-footer__inner {

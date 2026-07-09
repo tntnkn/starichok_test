@@ -1,0 +1,20 @@
+{% assign category_items = site.data.categories %}
+{% if category_items %}
+  <nav class="category-list" aria-label="{{ include.label | default: 'Категории' }}">
+    {% if include.title %}
+      <p class="category-list__title">{{ include.title }}</p>
+    {% endif %}
+    <ul class="category-list__items">
+      {% for category_item in category_items %}
+        {% assign category_item_posts = site.posts | where: "category", category_item.title %}
+        {% capture category_item_url %}/categories/{{ category_item.slug }}/{% endcapture %}
+        <li>
+          <a class="category-chip{% if include.active == category_item.title %} category-chip--active{% endif %}" href="{{ category_item_url | relative_url }}">
+            <span>{{ category_item.title }}</span>
+            <span class="category-chip__count">{{ category_item_posts | size }}</span>
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

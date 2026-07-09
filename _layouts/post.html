@@ -20,7 +20,19 @@ layout: default
       {% endif %}
       <div class="post-meta" aria-label="Сведения о статье">
         {% if page.category %}
-          <span>{{ page.category }}</span>
+          {% assign page_category_url = "" %}
+          {% for page_category in site.data.categories %}
+            {% if page_category.title == page.category %}
+              {% capture page_category_url %}/categories/{{ page_category.slug }}/{% endcapture %}
+            {% endif %}
+          {% endfor %}
+          <span>
+            {% if page_category_url != "" %}
+              <a class="post-meta__category" href="{{ page_category_url | relative_url }}">{{ page.category }}</a>
+            {% else %}
+              {{ page.category }}
+            {% endif %}
+          </span>
         {% endif %}
         {% if page.date %}
           <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time>

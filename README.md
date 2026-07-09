@@ -29,6 +29,7 @@ eyebrow:
 slug:
 date:
 image:
+category:
 show_author:
 show_practice_block:
 show_contact_form:
@@ -36,5 +37,7 @@ canonical_url:
 seo_title:
 seo_description:
 ```
+
+Categories are listed in `_data/categories.yml`. The `title` value must match a post's `category` front matter exactly; `slug` controls the generated category URL under `/categories/<slug>/`.
 
 Forms are visual-only in this version. Submission wiring is intentionally deferred.
