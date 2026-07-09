@@ -14,8 +14,9 @@ layout: default
 
 <section class="blog-index section-dark" aria-label="Список публикаций">
   <div class="container">
+    {% assign posts = paginator.posts | default: site.posts %}
     <div class="post-grid">
-      {% for post in site.posts %}
+      {% for post in posts %}
         <article class="post-card">
           <a class="post-card__image-link" href="{{ post.url | relative_url }}" aria-label="{{ post.title | escape }}">
             {% assign post_image = post.image | default: site.default_og_image %}
@@ -35,5 +36,10 @@ layout: default
         </article>
       {% endfor %}
     </div>
+    {% if paginator.next_page %}
+      <nav class="pagination" aria-label="Навигация по публикациям">
+        <a class="pagination__next" href="{{ paginator.next_page_path | relative_url }}">Читать дальше</a>
+      </nav>
+    {% endif %}
   </div>
 </section>

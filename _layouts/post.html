@@ -3,6 +3,12 @@ layout: default
 ---
 
 <article class="post-page">
+  {% assign words = content | strip_html | number_of_words %}
+  {% assign reading_minutes = words | divided_by: 180 %}
+  {% if reading_minutes < 1 %}
+    {% assign reading_minutes = 1 %}
+  {% endif %}
+
   <header class="post-hero section-dark">
     <div class="container post-hero__inner">
       {% if page.eyebrow %}
@@ -12,25 +18,51 @@ layout: default
       {% if page.description %}
         <p class="post-hero__description">{{ page.description }}</p>
       {% endif %}
+      <div class="post-meta" aria-label="Сведения о статье">
+        {% if page.category %}
+          <span>{{ page.category }}</span>
+        {% endif %}
+        {% if page.date %}
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%d.%m.%Y" }}</time>
+        {% endif %}
+        <span>{{ reading_minutes }} мин чтения</span>
+      </div>
     </div>
   </header>
-
-  {% include messenger-cta.html tone="dark" %}
 
   {% if page.show_author %}
     {% include author-block.html %}
   {% endif %}
+
+  {% include messenger-cta.html tone="light" %}
 
   <div class="article-shell">
     {% if page.show_practice_block %}
       {% include practice-block.html %}
     {% endif %}
 
-    <section class="article-section">
+    <section class="article-section article-section--body">
       <div class="article-content">
         {{ content }}
       </div>
     </section>
+
+    {% if page.previous or page.next %}
+      <nav class="post-nav" aria-label="Навигация по статьям">
+        {% if page.previous %}
+          <a class="post-nav__link post-nav__link--prev" href="{{ page.previous.url | relative_url }}">
+            <span class="post-nav__label">Предыдущая статья</span>
+            <span class="post-nav__title">{{ page.previous.title }}</span>
+          </a>
+        {% endif %}
+        {% if page.next %}
+          <a class="post-nav__link post-nav__link--next" href="{{ page.next.url | relative_url }}">
+            <span class="post-nav__label">Следующая статья</span>
+            <span class="post-nav__title">{{ page.next.title }}</span>
+          </a>
+        {% endif %}
+      </nav>
+    {% endif %}
 
     {% if page.show_contact_form %}
       {% include contact-form.html %}
