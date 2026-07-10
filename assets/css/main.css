@@ -353,11 +353,13 @@ a:hover {
 
 .pagination {
   display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
   justify-content: center;
   margin-top: 64px;
 }
 
-.pagination__next {
+.pagination__link {
   display: inline-flex;
   min-height: 52px;
   align-items: center;
@@ -377,10 +379,22 @@ a:hover {
     border-color 180ms ease;
 }
 
-.pagination__next:hover {
+.pagination__link:hover {
   color: var(--color-cream-2);
   background: transparent;
   border-color: rgba(250, 233, 221, 0.55);
+}
+
+.pagination__link--prev {
+  color: var(--color-cream-2);
+  background: transparent;
+  border-color: rgba(250, 233, 221, 0.38);
+}
+
+.pagination__link--prev:hover {
+  color: var(--color-dark);
+  background: var(--color-cream-2);
+  border-color: var(--color-cream-2);
 }
 
 .post-hero {

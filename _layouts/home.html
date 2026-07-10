@@ -22,9 +22,14 @@ layout: default
         {% include post-card.html post=post %}
       {% endfor %}
     </div>
-    {% if paginator.next_page %}
+    {% if paginator.previous_page or paginator.next_page %}
       <nav class="pagination" aria-label="Навигация по публикациям">
-        <a class="pagination__next" href="{{ paginator.next_page_path | relative_url }}">Читать дальше</a>
+        {% if paginator.previous_page %}
+          <a class="pagination__link pagination__link--prev" href="{{ paginator.previous_page_path | relative_url }}">Назад</a>
+        {% endif %}
+        {% if paginator.next_page %}
+          <a class="pagination__link pagination__link--next" href="{{ paginator.next_page_path | relative_url }}">Читать дальше</a>
+        {% endif %}
       </nav>
     {% endif %}
   </div>
