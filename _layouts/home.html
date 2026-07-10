@@ -4,18 +4,101 @@ layout: default
 
 <section class="blog-hero section-dark">
   <div class="container blog-hero__inner">
-    <p class="eyebrow">Адвокат, кандидат юридических наук, магистр экономики</p>
-    <h1>{{ page.title }}</h1>
-    {% if page.description %}
-      <p class="blog-hero__description">{{ page.description }}</p>
-    {% endif %}
+    <div class="blog-hero__copy">
+      <p class="eyebrow">Судебные споры и защита бизнеса</p>
+      <h1>{{ page.title }}</h1>
+      {% if page.description %}
+        <p class="blog-hero__description">{{ page.description }}</p>
+      {% endif %}
+      {% if page.intro %}
+        <p class="blog-hero__intro">{{ page.intro }}</p>
+      {% endif %}
+      <nav class="blog-hero__actions" aria-label="Навигация по главной странице">
+        <a class="button-link button-link--primary" href="#latest-posts">Читать статьи</a>
+        <a class="button-link" href="{{ '/categories/arbitrazhnye-spory/' | relative_url }}">Выбрать тему</a>
+      </nav>
+    </div>
+
+    <aside class="blog-hero__author" aria-label="Автор блога">
+      <img src="{{ site.author.portrait | relative_url }}" alt="{{ site.author.full_name }}">
+      <div class="blog-hero__author-text">
+        <p class="blog-hero__author-label">Автор блога</p>
+        <p class="blog-hero__author-name">{{ site.author.full_name }}</p>
+        <p>{{ site.author.title }}</p>
+        <p>{{ site.author.award }}</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="home-about" aria-labelledby="home-about-title">
+  <div class="container home-about__inner">
+    <div class="home-section-header">
+      <p class="eyebrow">О чем этот блог</p>
+      <h2 id="home-about-title">Разборы юридических рисков без академической дистанции</h2>
+      <p>Материалы помогают понять, какие документы нужны, где обычно возникают слабые места позиции и когда спор лучше решать до суда.</p>
+    </div>
+
+    <div class="home-topic-grid">
+      <a class="home-topic" href="{{ '/categories/arbitrazhnye-spory/' | relative_url }}">
+        <span class="home-topic__label">Судебные споры</span>
+        <span>Подготовка позиции, доказательства, апелляция, кассация и стратегия поведения в арбитраже.</span>
+      </a>
+      <a class="home-topic" href="{{ '/categories/vzyskanie-zadolzhennosti/' | relative_url }}">
+        <span class="home-topic__label">Взыскание долгов</span>
+        <span>Претензии, обеспечительные меры, проценты, неустойка и исполнение судебного решения.</span>
+      </a>
+      <a class="home-topic" href="{{ '/categories/bankrotstvo/' | relative_url }}">
+        <span class="home-topic__label">Банкротство</span>
+        <span>Риски для кредиторов, директоров и контролирующих лиц, оспаривание сделок и реестр требований.</span>
+      </a>
+      <a class="home-topic" href="{{ '/categories/nalogovye-spory/' | relative_url }}">
+        <span class="home-topic__label">Налоги и бизнес</span>
+        <span>Проверки, требования инспекции, доначисления, дробление бизнеса и споры с контрагентами.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="home-proof section-dark" aria-label="Практика автора">
+  <div class="container home-proof__inner">
+    <div class="home-proof__copy">
+      <p class="eyebrow">Практика автора</p>
+      <h2>Пишу о том, что проверено судебной работой</h2>
+    </div>
+    <dl class="home-proof__list">
+      <div>
+        <dt>170+ млн ₽</dt>
+        <dd>снижение налоговых доначислений</dd>
+      </div>
+      <div>
+        <dt>40 млн ₽</dt>
+        <dd>защита директора от взыскания</dd>
+      </div>
+      <div>
+        <dt>448+ млн ₽</dt>
+        <dd>предотвращение включения требований в реестр</dd>
+      </div>
+    </dl>
   </div>
 </section>
 
 <section class="blog-index section-dark" aria-label="Список публикаций">
   <div class="container">
     {% assign posts = paginator.posts | default: site.posts %}
-    {% include category-list.html title="Темы блога" %}
+    <div class="home-section-header home-section-header--dark">
+      <p class="eyebrow">Навигация по материалам</p>
+      <h2>Выберите тему</h2>
+      <p>Найдите материалы по ситуации: от претензии и подготовки доказательств до исполнения судебного решения.</p>
+    </div>
+
+    {% include category-list.html title="Категории" %}
+
+    <div id="latest-posts" class="home-section-header home-section-header--dark home-section-header--posts">
+      <p class="eyebrow">Последние публикации</p>
+      <h2>Новые разборы практических вопросов</h2>
+      <p>Каждая статья показывает, какие обстоятельства имеют значение для суда и какие действия стоит продумать заранее.</p>
+    </div>
 
     <div class="post-grid">
       {% for post in posts %}
