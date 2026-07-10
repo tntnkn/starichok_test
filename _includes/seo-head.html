@@ -35,6 +35,11 @@
 
 {% if page.layout == 'post' %}
   <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+  {% assign seo_author_id = page.author | default: site.default_author %}
+  {% assign seo_author = site.data.authors[seo_author_id] %}
+  {% if seo_author and seo_author.url %}
+    <meta property="article:author" content="{{ seo_author.url | absolute_url }}">
+  {% endif %}
 {% endif %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">

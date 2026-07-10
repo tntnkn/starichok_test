@@ -19,6 +19,8 @@ plugins:
 paginate: 6
 paginate_path: "/page:num/"
 
+default_author: milskiy-andrey
+
 exclude:
   - resource/
   - README.md
@@ -31,6 +33,7 @@ defaults:
       type: posts
     values:
       layout: post
+      author: milskiy-andrey
       show_author: true
       show_practice_block: true
       show_contact_form: true
@@ -46,7 +49,7 @@ author:
   name: "Мильский Андрей"
   full_name: "Мильский Андрей Сергеевич"
   title: "адвокат, кандидат юридических наук, магистр экономики"
-  award: "победитель премии «Адвокат года 2026» по версии RBG и Торгово-промышленной палаты России"
+  award: "награжден адвокатской палатой Московской области «За успехи в правозащитной деятельности»"
   image: /assets/img/author1.png
   portrait: /assets/img/author2.webp
 

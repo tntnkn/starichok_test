@@ -2,6 +2,10 @@
 layout: default
 ---
 
+{% assign hero_author_id = page.author | default: site.default_author %}
+{% assign hero_author = site.data.authors[hero_author_id] | default: site.author %}
+{% assign hero_author_url = hero_author.url | default: "/authors/milskiy-andrey/" %}
+
 <section class="blog-hero section-dark">
   <div class="container blog-hero__inner">
     <div class="blog-hero__copy">
@@ -19,15 +23,15 @@ layout: default
       </nav>
     </div>
 
-    <aside class="blog-hero__author" aria-label="Автор блога">
-      <img src="{{ site.author.portrait | relative_url }}" alt="{{ site.author.full_name }}">
+    <a class="blog-hero__author" href="{{ hero_author_url | relative_url }}" aria-label="Страница автора {{ hero_author.full_name | default: hero_author.name | escape }}">
+      <img src="{{ hero_author.portrait | default: hero_author.image | relative_url }}" alt="{{ hero_author.full_name | default: hero_author.name | escape }}">
       <div class="blog-hero__author-text">
         <p class="blog-hero__author-label">Автор блога</p>
-        <p class="blog-hero__author-name">{{ site.author.full_name }}</p>
-        <p>{{ site.author.title }}</p>
-        <p>{{ site.author.award }}</p>
+        <p class="blog-hero__author-name">{{ hero_author.full_name | default: hero_author.name }}</p>
+        <p>{{ hero_author.title }}</p>
+        <p>{{ hero_author.award }}</p>
       </div>
-    </aside>
+    </a>
   </div>
 </section>
 

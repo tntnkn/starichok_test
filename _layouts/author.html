@@ -1,0 +1,192 @@
+---
+layout: default
+---
+
+{% assign author_id = page.author_id | default: site.default_author %}
+{% assign author = site.data.authors[author_id] | default: site.author %}
+{% assign author_name = author.full_name | default: author.name %}
+{% assign author_short_name = author.short_name | default: author.name %}
+{% assign author_photo = author.portrait | default: author.image %}
+{% assign author_content = content | strip %}
+
+<article class="author-page">
+  <header class="author-hero section-dark">
+    <div class="container author-hero__inner">
+      <div class="author-hero__copy">
+        <p class="eyebrow">Автор блога</p>
+        <h1>{{ page.title | default: author_name }}</h1>
+        {% if author.intro %}
+          <p class="author-hero__lead">{{ author.intro }}</p>
+        {% endif %}
+
+        <dl class="author-hero__meta" aria-label="Сведения об авторе">
+          {% if author.title %}
+            <div>
+              <dt>Статус</dt>
+              <dd>{{ author.title }}</dd>
+            </div>
+          {% endif %}
+          {% if author.experience_note %}
+            <div>
+              <dt>Практика</dt>
+              <dd>{{ author.experience_note }}</dd>
+            </div>
+          {% endif %}
+          {% if author.register %}
+            <div>
+              <dt>Реестр</dt>
+              <dd>{{ author.register }}</dd>
+            </div>
+          {% endif %}
+        </dl>
+
+        <nav class="author-hero__actions" aria-label="Действия на странице автора">
+          <a class="button-link button-link--primary" href="#author-posts">Читать статьи</a>
+          <a class="button-link" href="{{ site.contact.phone_main_href }}">Обсудить ситуацию</a>
+        </nav>
+      </div>
+
+      <aside class="author-hero__card" aria-label="Портрет автора">
+        {% if author_photo %}
+          <img class="author-hero__photo" src="{{ author_photo | relative_url }}" alt="{{ author_name | escape }}">
+        {% endif %}
+        <div class="author-hero__card-body">
+          <p class="author-hero__card-name">{{ author_short_name }}</p>
+          {% if author.award %}
+            <p>{{ author.award }}</p>
+          {% endif %}
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  {% if author.facts %}
+    <section class="author-facts section-dark" aria-label="Ключевые сведения об авторе">
+      <div class="container author-facts__grid">
+        {% for fact in author.facts %}
+          <div class="author-fact">
+            <span class="author-fact__value">{{ fact.value }}</span>
+            <span class="author-fact__label">{{ fact.label }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="author-profile" aria-labelledby="author-profile-title">
+    <div class="container author-profile__inner">
+      <div class="author-profile__content article-content">
+        <p class="eyebrow">Подход</p>
+        <h2 id="author-profile-title">Практический взгляд на спор</h2>
+        {% if author_content != "" %}
+          {{ content }}
+        {% elsif author.bio %}
+          <p>{{ author.bio }}</p>
+        {% endif %}
+      </div>
+
+      {% if author.principles %}
+        <aside class="author-profile__side" aria-label="Принципы работы">
+          <p class="author-profile__side-title">Принципы</p>
+          <ul class="author-profile__topics">
+            {% for item in author.principles %}
+              <li>{{ item }}</li>
+            {% endfor %}
+          </ul>
+        </aside>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="author-experience" aria-labelledby="author-experience-title">
+    <div class="container">
+      <div class="home-section-header">
+        <p class="eyebrow">Профессиональная база</p>
+        <h2 id="author-experience-title">Образование, опыт и специализация</h2>
+      </div>
+
+      <div class="author-info-grid">
+        {% if author.education %}
+          <section class="author-info-panel">
+            <h3>Образование</h3>
+            <ul>
+              {% for item in author.education %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </section>
+        {% endif %}
+
+        {% if author.experience %}
+          <section class="author-info-panel">
+            <h3>Опыт</h3>
+            <ul>
+              {% for item in author.experience %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </section>
+        {% endif %}
+
+        {% if author.expertise %}
+          <section class="author-info-panel">
+            <h3>Темы работы</h3>
+            <ul>
+              {% for item in author.expertise %}
+                <li>{{ item }}</li>
+              {% endfor %}
+            </ul>
+          </section>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  {% if author.highlights %}
+    <section class="author-proof section-dark" aria-label="Практика автора">
+      <div class="container author-proof__inner">
+        <div class="author-proof__copy">
+          <p class="eyebrow">Практика автора</p>
+          <h2>Материалы блога опираются на судебную работу</h2>
+        </div>
+        <dl class="author-proof__list">
+          {% for item in author.highlights %}
+            <div>
+              <dt>{{ item.value }}</dt>
+              <dd>{{ item.label }}</dd>
+            </div>
+          {% endfor %}
+        </dl>
+      </div>
+    </section>
+  {% endif %}
+
+  <section id="author-posts" class="blog-index author-posts section-dark" aria-label="Публикации автора {{ author_name | escape }}">
+    <div class="container">
+      <div class="home-section-header home-section-header--dark">
+        <p class="eyebrow">Публикации автора</p>
+        <h2>Разборы практических вопросов</h2>
+        {% if author.bio %}
+          <p>{{ author.bio }}</p>
+        {% endif %}
+      </div>
+
+      {% assign has_author_posts = false %}
+      <div class="post-grid">
+        {% for post in site.posts %}
+          {% assign post_author_id = post.author | default: site.default_author %}
+          {% if post_author_id == author_id %}
+            {% assign has_author_posts = true %}
+            {% include post-card.html post=post %}
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      {% unless has_author_posts %}
+        <p class="category-empty">У этого автора пока нет публикаций.</p>
+      {% endunless %}
+    </div>
+  </section>
+
+  {% include messenger-cta.html tone="dark" %}
+</article>
